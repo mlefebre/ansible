@@ -1,0 +1,91 @@
+# This is the default ansible 'hosts' file.
+#
+# It should live in /etc/ansible/hosts
+#
+#   - Comments begin with the '#' character
+#   - Blank lines are ignored
+#   - Groups of hosts are delimited by [header] elements
+#   - You can enter hostnames or ip addresses
+#   - A hostname/ip can be a member of multiple groups
+
+# Ex 1: Ungrouped hosts, specify before any group headers.
+
+## green.example.com
+## blue.example.com
+## 192.168.100.1
+## 192.168.100.10
+
+# Ex 2: A collection of hosts belonging to the 'webservers' group
+
+## [webservers]
+## alpha.example.org
+## beta.example.org
+## 192.168.1.100
+## 192.168.1.110
+
+# If you have multiple hosts following a pattern you can specify
+# them like this:
+
+## www[001:006].example.com
+
+# Ex 3: A collection of database servers in the 'dbservers' group
+
+## [dbservers]
+## 
+## db01.intranet.mydomain.net
+## db02.intranet.mydomain.net
+## 10.25.1.56
+## 10.25.1.57
+
+# Here's another example of host ranges, this time there are no
+# leading 0s:
+
+## db-[99:101]-node.example.com
+[routers]
+
+RTR-CENARE-SBC-1 ansible_host=10.84.17.17
+
+[switches]
+
+SW-CORE-CENARE-1 ansible_host=10.84.0.11
+#SW-DIST-CENARE-1 ansible_host=10.84.17.70
+#SW-DIST-CENARE-2 ansible_host=10.84.17.71
+SWATCGI ansible_host=10.84.0.100
+#SW-ACC-CENARE-LAB ansible_host=10.84.17.41
+#SW-ACC-CENARE-LAB-2 ansible_host=10.84.17.44
+#SW-ACC-CENARE-SEC-A ansible_host=10.84.17.42
+#SW-ACC-CENARE-SEC-B ansible_host=10.84.17.43
+#SW-CNR-CAUX-GB01 ansible_host=10.84.17.22
+#Switch_Servers_1 ansible_host=10.84.17.45
+#SW-TERAPIAS-1 ansible_host=10.84.17.31
+
+
+[windows]
+
+10.84.3.3
+
+[windows:vars]
+ansible_user=admincenare
+ansible_password=Cenare2203
+ansible_port=5986
+ansible_connection=winrm
+#ansible_winrm_server_cert_validation=ignore
+#ansible_shell_type=powershell
+#ansible_shell_executable=None
+#ansible_winrm_transport=basic
+
+[routers:vars]
+
+ansible_user=cenare
+ansible_ssh_pass=Cenare2203$
+ansible_become_password=Cenare2203$
+ansible_connection=network_cli
+ansible_network_os=ios
+
+[switches:vars]
+
+ansible_user=cenare
+ansible_ssh_pass=Cenare2203$
+ansible_become_password=Cenare2203$
+ansible_connection=network_cli
+ansible_network_os=ios

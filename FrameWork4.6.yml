@@ -1,0 +1,7 @@
+- hosts: windows
+  gather_facts: true
+  tasks:
+  - name: install framework
+    win_chocolatey:
+      name: framework4.6
+      state: present

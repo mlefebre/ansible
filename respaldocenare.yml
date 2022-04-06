@@ -1,0 +1,20 @@
+- name: Issue show commands
+  hosts: switches
+  connection: network_cli
+  tasks:
+    - name: Respaldo Cenare
+      ios_command:
+        commands:
+           - "copy running-config tftp:\n10.84.3.41\r"
+       #provider:
+         # host: switches
+          #port: 22
+          #authorize: yes
+          #auth_pass: Cenare2203$
+          #username: cenare
+          #password: Cenare2203$
+      register: if_data
+
+    - name: Interfaces output
+      debug:
+        var: if_data['stdout_lines'][0]

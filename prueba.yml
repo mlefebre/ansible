@@ -1,0 +1,19 @@
+---
+
+- name: Respaldo Configuraciones
+  hosts: swicthes
+  gather_facts: false
+  conection: network_cli
+
+  #vars:
+   # cli:
+    #  username: cenare
+     # password: Cenare2203
+      #timeout: 100
+
+  tasks:
+    - name: Backup Running-config
+      ios_config:
+        lines:
+	 - do sh run
+      register: print_output
